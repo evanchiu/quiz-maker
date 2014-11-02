@@ -4,8 +4,6 @@
 angular.module('app', [
   'ngRoute',
   'app.quiz',
-  'app.view1',
-  'app.view2',
   'app.version'
 ]).
 config(['$routeProvider', function($routeProvider) {
