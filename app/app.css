@@ -37,3 +37,24 @@ body > .container {
 code {
   font-size: 80%;
 }
+
+.control, .question {
+  background-color: #ddd;
+}
+.control.select, .question.select {
+  background-color: #e43b5a;
+}
+.control {
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  text-align: center;
+  padding: 20px; 0;
+}
+.question {
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+.correct {
+  font-weight: bold;
+}
