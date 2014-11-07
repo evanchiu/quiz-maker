@@ -8,30 +8,33 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
   });
 }])
 .controller('QuizCtrl',
-  ['$scope', '$rootScope', '$routeParams', 'parser',
-    function($scope, $rootScope, $routeParams, parser) {
+  ['$scope', '$rootScope', '$routeParams', '$localStorage', 'parser',
+    function($scope, $rootScope, $routeParams, $localStorage, parser) {
       // Initialize
-      $scope.questions = [];
+      $scope.storage = $localStorage.$default({
+        inputText: '',
+        questions: [],
+        outputText: ''
+      })
       $rootScope.selectCount = 0;
 
       // Watch for changes to the input, update the questions
-      $scope.$watch('inputText', function(newValue, oldValue) {
+      $scope.$watch('storage.inputText', function(newValue, oldValue) {
         if (newValue) {
-          parser.parseTestBank(newValue, $scope.questions);
+          parser.parseTestBank(newValue, $scope.storage.questions);
         }
       });
 
       // Deep Watch for changes to the questions, update the output and count
-      $scope.$watch('questions', function(newValue, oldValue) {
+      $scope.$watch('storage.questions', function(newValue, oldValue) {
         if (newValue) {
           // Tabbify for output text
-          $scope.outputText = '';
-          $scope.selectCount = 0;
+          $scope.storage.outputText = '';
           $rootScope.selectCount = 0;
-          for (var i = 0; i < $scope.questions.length; i++) {
-            var question = $scope.questions[i];
+          for (var i = 0; i < $scope.storage.questions.length; i++) {
+            var question = $scope.storage.questions[i];
             if (question.selected) {
-              $scope.outputText += parser.makeTabby(question) + '\n';
+              $scope.storage.outputText += parser.makeTabby(question) + '\n';
               $rootScope.selectCount++;
             }
           }

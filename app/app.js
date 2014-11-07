@@ -3,6 +3,7 @@
 // Declare app level module which depends on views, and components
 angular.module('app', [
   'ngRoute',
+  'ngStorage',
   'app.quiz',
   'app.version'
 ]).

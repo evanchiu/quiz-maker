@@ -2,11 +2,11 @@
 
 <h2>Input</h2>
 <p>Copy from the publisher's testbank and paste into here. Edit it to change the questions or answers.</p>
-<textarea ng-model="inputText"></textarea>
+<textarea ng-model="storage.inputText"></textarea>
 
 <h2>Questions</h2>
 <p>Use the checkboxes to select desired questions, see the selection count in the top right auto update.</p>
-<div class="row" ng-repeat="question in questions">
+<div class="row" ng-repeat="question in storage.questions">
   <div ng-class="questionStyle(question)" class="control col-sm-2">
     <input ng-model="question.selected" type="checkbox">
   </div>
@@ -22,4 +22,4 @@
 
 <h2>Output</h2>
 <p>Copy this output into a new text file in Atom, save it, then upload to Blackboard.</p>
-<textarea ng-model="outputText"></textarea>
+<textarea ng-model="storage.outputText"></textarea>

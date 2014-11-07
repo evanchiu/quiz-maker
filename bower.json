@@ -1,7 +1,7 @@
 {
   "name": "quiz-maker",
   "description": "A one page site for converting publisher text to Blackboard quiz",
-  "version": "0.1",
+  "version": "0.1.1",
   "homepage": "https://github.com/evanchiu/quiz-maker",
   "license": "MIT",
   "private": true,
@@ -10,6 +10,7 @@
     "angular-route": "1.2.x",
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
-    "bootstrap": "~3.3.0"
+    "bootstrap": "~3.3.0",
+    "ngstorage": "~0.3.0"
   }
 }
