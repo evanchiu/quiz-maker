@@ -13,10 +13,10 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
       // Initialize
       $scope.storage = $localStorage.$default({
         inputText: '',
-        questions: [],
-        outputText: ''
+        questions: []
       })
       $rootScope.selectCount = 0;
+      $scope.downloadName = 'quiz.txt';
 
       // Watch for changes to the input, update the questions
       $scope.$watch('storage.inputText', function(newValue, oldValue) {
@@ -29,15 +29,20 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
       $scope.$watch('storage.questions', function(newValue, oldValue) {
         if (newValue) {
           // Tabbify for output text
-          $scope.storage.outputText = '';
+          var outputText = '';
           $rootScope.selectCount = 0;
           for (var i = 0; i < $scope.storage.questions.length; i++) {
             var question = $scope.storage.questions[i];
             if (question.selected) {
-              $scope.storage.outputText += parser.makeTabby(question) + '\n';
+              outputText += parser.makeTabby(question) + '\n';
               $rootScope.selectCount++;
             }
           }
+
+          // Generate export url, tips from Stack Overflow:
+          // http://stackoverflow.com/questions/16342659/directive-to-create-adownload-button
+          var blob = new Blob([outputText], {type: 'text/plain'});
+          $scope.exportUrl = URL.createObjectURL(blob);
         }
       }, true);
 
