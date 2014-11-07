@@ -23,7 +23,7 @@ QuizMaker is based on [angular-seed](https://github.com/angular/angular-seed):
 
 ## Todo
 * ~~Add saving to local data store~~
-* Convert fancy ' and " to simple ones
+* ~~Convert fancy ' and " to simple ones~~
 * Add an export option, to save as .txt
 * No more editing the input: input once, then edit questions directly
   * Use two divs: one for show, one for edit, which flip visibility
