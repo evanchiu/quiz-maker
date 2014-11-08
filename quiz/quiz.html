@@ -1,25 +1,40 @@
-<h1>Quiz</h1>
+<h1>QuizMaker</h1>
 
 <h2>Input</h2>
-<p>Copy from the publisher's testbank and paste into here. Edit it to change the questions or answers.</p>
+<p>Copy from the publisher's testbank and paste into here.</p>
 <textarea ng-model="inputText"></textarea>
 
 <h2>Questions</h2>
 <p>Use the checkboxes to select desired questions, see the selection count in the top right auto update.</p>
-<div class="row" ng-repeat="question in questions">
+<div class="row" ng-repeat="question in storage.questions">
   <div ng-class="questionStyle(question)" class="control col-sm-2">
-    <input ng-model="question.selected" type="checkbox">
+    <button class="btn btn-primary" ng-click="select(question)">
+      <span ng-class="selectedGlyph(question)" class="glyphicon"></span>
+    </button>
+    <button class="btn btn-primary" ng-click="edit(question)">
+      <span class="glyphicon glyphicon-edit"></span>
+    </button>
   </div>
   <div ng-class="questionStyle(question)" class="question col-sm-10">
-    <p>{{question.question}}</p>
-    <ol type="a">
-      <li ng-repeat="choice in question.choices">
-        <span ng-class="choiceStyle(choice)">{{choice.text}}</span>
-      </li>
-    </ol>
+    <div class="question-view" ng-class="viewStyle(question)">
+      <p>{{question.question}}</p>
+      <ol type="a">
+        <li ng-repeat="choice in question.choices">
+          <span ng-class="choiceStyle(choice)">{{choice.text}}</span>
+        </li>
+      </ol>
+    </div>
+    <div class="question-edit" ng-class="editStyle(question)">
+      <input type="text" ng-model="question.question"></input>
+      <ol type="a">
+        <li ng-repeat="choice in question.choices">
+          <input type="text" ng-class="choiceStyle(choice)" ng-model="choice.text"></span>
+        </li>
+      </ol>
+    </div>
   </div>
 </div>
 
 <h2>Output</h2>
-<p>Copy this output into a new text file in Atom, save it, then upload to Blackboard.</p>
-<textarea ng-model="outputText"></textarea>
+<p>Download this file, then upload to Blackboard.</p>
+<button class="btn btn-info"><a ng-attr-download="{{downloadName}}" ng-attr-href="{{exportUrl}}">Download</a></button>

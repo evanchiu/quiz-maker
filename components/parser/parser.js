@@ -2,6 +2,16 @@
 
 angular.module('app.parser', [])
 .factory('parser', [function() {
+
+  // Filter the input
+  // Replaces smart quotes with regular ones, taken from StackOverflow
+  // http://stackoverflow.com/questions/9401312/how-to-replace-curly-quotation-marks-in-a-string-using-javascript
+  var filter = function(input) {
+    return input
+      .replace(/[\u2018\u2019]/g, "'")
+      .replace(/[\u201C\u201D]/g, '"');
+  }
+
   return {
     parseTestBank: function(text, questions) {
       var lines = text.split(/\r\n|\r|\n/);
@@ -53,7 +63,7 @@ angular.module('app.parser', [])
           output += 'incorrect' + delim;
         }
       }
-      return output;
+      return filter(output);
     }
   };
 }]);
