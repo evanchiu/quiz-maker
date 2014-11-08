@@ -58,3 +58,15 @@ code {
 .correct {
   font-weight: bold;
 }
+.hidden {
+  display: none;
+}
+.question {
+  padding-top: 8px;
+}
+.question-edit input {
+  width: 100%;
+}
+.control {
+  cursor: pointer;
+}

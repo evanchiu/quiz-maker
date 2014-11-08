@@ -12,16 +12,17 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
     function($scope, $rootScope, $routeParams, $localStorage, parser) {
       // Initialize
       $scope.storage = $localStorage.$default({
-        inputText: '',
         questions: []
       })
+      $scope.inputText = '';
       $rootScope.selectCount = 0;
       $scope.downloadName = 'quiz.txt';
 
       // Watch for changes to the input, update the questions
-      $scope.$watch('storage.inputText', function(newValue, oldValue) {
+      $scope.$watch('inputText', function(newValue, oldValue) {
         if (newValue) {
           parser.parseTestBank(newValue, $scope.storage.questions);
+          $scope.inputText = '';
         }
       });
 
@@ -46,6 +47,18 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
         }
       }, true);
 
+      // Toggles for selecting/editing
+      $scope.select = function(question) {
+        question.selected = !question.selected;
+      };
+      $scope.edit = function(question) {
+        question.edit = !question.edit;
+      };
+
+      $scope.selectedGlyph = function(question) {
+        return (question.selected) ? 'glyphicon-star' : 'glyphicon-star-empty';
+      }
+
       // Set the choice style based on the correctness
       $scope.choiceStyle = function(choice) {
         return (choice.correct) ? 'correct' : 'incorrect';
@@ -54,6 +67,14 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
       // Set the question style based on the selection
       $scope.questionStyle = function(question) {
         return (question.selected) ? 'select' : 'unselected';
+      };
+
+      // view and edit style hide when it's not their turn
+      $scope.viewStyle = function(question) {
+        return (question.edit) ? 'hidden' : '';
+      };
+      $scope.editStyle = function(question) {
+        return (question.edit) ? '' : 'hidden';
       };
     }
   ]
