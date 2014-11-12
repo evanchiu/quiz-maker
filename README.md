@@ -27,7 +27,7 @@ QuizMaker is based on [angular-seed](https://github.com/angular/angular-seed):
 * ~~Add an export option, to save as .txt~~
 * ~~No more editing the input: input once, then edit questions directly~~
   * ~~Use two divs: one for show, one for edit, which flip visibility~~
-* Homepage/Separate pages per quiz
+* ~~Homepage/Separate pages per quiz~~
 * About page
 * Clean, unique theme
 * Controls (download) in top right

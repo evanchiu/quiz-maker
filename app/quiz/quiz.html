@@ -1,4 +1,18 @@
-<h1>QuizMaker</h1>
+<div class="row">
+  <div class="col-sm-8">
+    <div class="title-view" ng-class="viewTitleStyle()">
+      <h1>{{quiz.name}}</h1>
+    </div>
+    <div class="title-edit" ng-class="editTitleStyle()">
+      <input type="text" ng-model="quiz.name">
+    </div>
+  </div>
+  <div class="righted col-sm-4">
+    <button class="btn" ng-click="editTitle()">
+      <span class="glyphicon glyphicon-edit"></span>
+    </button>
+  </div>
+</div>
 
 <h2>Input</h2>
 <p>Copy from the publisher's testbank and paste into here.</p>
@@ -6,7 +20,7 @@
 
 <h2>Questions</h2>
 <p>Use the checkboxes to select desired questions, see the selection count in the top right auto update.</p>
-<div class="row" ng-repeat="question in storage.questions">
+<div class="row" ng-repeat="question in quiz.questions">
   <div ng-class="questionStyle(question)" class="control col-sm-2">
     <button class="btn btn-primary" ng-click="select(question)">
       <span ng-class="selectedGlyph(question)" class="glyphicon"></span>
