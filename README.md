@@ -14,10 +14,10 @@ Quiz
   * Indicate whether this is in the quiz or not
 
 ### Pages
+* Home Page
 * Quiz Page
   * Original Text Entry
   * Parsed Questions - possibly with an edit button
-  * Export text area - we can just live update this
 
 QuizMaker is based on [angular-seed](https://github.com/angular/angular-seed):
 
@@ -28,10 +28,9 @@ QuizMaker is based on [angular-seed](https://github.com/angular/angular-seed):
 * ~~No more editing the input: input once, then edit questions directly~~
   * ~~Use two divs: one for show, one for edit, which flip visibility~~
 * ~~Homepage/Separate pages per quiz~~
-* About page
-* Clean, unique theme
 * ~~Controls (download) in top right~~
-* Three steps per quiz:
-  * Input data (paste into textarea)
-  * Select and edit questions (hit clear to go back)
-  * Download
+* ~~Three steps per quiz:~~
+  * ~~Input data (paste into textarea)~~
+  * ~~Select and edit questions (hit clear to go back)~~
+  * ~~Download~~
+* Clean, unique theme

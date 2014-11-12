@@ -1,50 +1,70 @@
-<div class="row">
-  <div class="col-sm-8">
-    <div class="title-view" ng-class="viewTitleStyle()">
-      <h1>{{quiz.name}}</h1>
+<div class="jumbotron">
+  <div class="row">
+    <div class="col-sm-11">
+      <div class="title-view" ng-class="viewTitleStyle()">
+        <h1>{{quiz.name}}</h1>
+      </div>
+      <div class="title-edit" ng-class="editTitleStyle()">
+        <input type="text" ng-model="quiz.name">
+      </div>
     </div>
-    <div class="title-edit" ng-class="editTitleStyle()">
-      <input type="text" ng-model="quiz.name">
+    <div class="righted col-sm-1">
+      <button class="btn" ng-click="editTitle()">
+        <span class="glyphicon glyphicon-edit"></span>
+      </button>
     </div>
   </div>
-  <div class="righted col-sm-4">
-    <button class="btn" ng-click="editTitle()">
-      <span class="glyphicon glyphicon-edit"></span>
-    </button>
+
+  <div class="row">
+    <div class="col-sm-4">
+      <h2 ng-class="stepActive(1)" class="step step-1">Step 1</h2>
+      <p ng-class="stepActive(1)">Copy from the publisher's testbank and paste into the input textbox</p>
+    </div>
+    <div class="col-sm-4">
+      <h2 ng-class="stepActive(2)" class="step step-2">Step 2</h2>
+      <p ng-class="stepActive(2)">Use the star buttons to select questions, use the edit button to edit them.</p>
+    </div>
+    <div class="col-sm-4">
+      <h2 ng-class="stepActive(3)" class="step step-3">Step 3</h2>
+      <p ng-class="stepActive(3)">Use the button in the top right to download the quiz.</p>
+    </div>
   </div>
 </div>
 
-<h2>Input</h2>
-<p>Copy from the publisher's testbank and paste into here.</p>
-<textarea ng-model="inputText"></textarea>
+<div ng-class="inputStyle()">
+  <h2>Input</h2>
+  <textarea ng-model="inputText"></textarea>
+  <p>{{inputText}}</p>
+</div>
 
-<h2>Questions</h2>
-<p>Use the checkboxes to select desired questions, see the selection count in the top right auto update.</p>
-<div class="row" ng-repeat="question in quiz.questions">
-  <div ng-class="questionStyle(question)" class="control col-sm-2">
-    <button class="btn btn-primary" ng-click="select(question)">
-      <span ng-class="selectedGlyph(question)" class="glyphicon"></span>
-    </button>
-    <button class="btn btn-primary" ng-click="edit(question)">
-      <span class="glyphicon glyphicon-edit"></span>
-    </button>
-  </div>
-  <div ng-class="questionStyle(question)" class="question col-sm-10">
-    <div class="question-view" ng-class="viewStyle(question)">
-      <p>{{question.question}}</p>
-      <ol type="a">
-        <li ng-repeat="choice in question.choices">
-          <span ng-class="choiceStyle(choice)">{{choice.text}}</span>
-        </li>
-      </ol>
+<div ng-class="questionsStyle()">
+  <h2>Questions</h2>
+  <div class="row" ng-repeat="question in quiz.questions">
+    <div ng-class="questionStyle(question)" class="control col-sm-2">
+      <button class="btn btn-primary" ng-click="select(question)">
+        <span ng-class="selectedGlyph(question)" class="glyphicon"></span>
+      </button>
+      <button class="btn btn-primary" ng-click="edit(question)">
+        <span class="glyphicon glyphicon-edit"></span>
+      </button>
     </div>
-    <div class="question-edit" ng-class="editStyle(question)">
-      <input type="text" ng-model="question.question"></input>
-      <ol type="a">
-        <li ng-repeat="choice in question.choices">
-          <input type="text" ng-class="choiceStyle(choice)" ng-model="choice.text"></span>
-        </li>
-      </ol>
+    <div ng-class="questionStyle(question)" class="question col-sm-10">
+      <div class="question-view" ng-class="viewStyle(question)">
+        <p>{{question.question}}</p>
+        <ol type="a">
+          <li ng-repeat="choice in question.choices">
+            <span ng-class="choiceStyle(choice)">{{choice.text}}</span>
+          </li>
+        </ol>
+      </div>
+      <div class="question-edit" ng-class="editStyle(question)">
+        <input type="text" ng-model="question.question"></input>
+        <ol type="a">
+          <li ng-repeat="choice in question.choices">
+            <input type="text" ng-class="choiceStyle(choice)" ng-model="choice.text"></span>
+          </li>
+        </ol>
+      </div>
     </div>
   </div>
 </div>

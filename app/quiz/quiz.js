@@ -34,7 +34,6 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
       }
 
       // Initialize
-      $scope.inputText = '';
       $rootScope.selectCount = 0;
 
       // Watch for changes to the input, update the questions
@@ -75,7 +74,6 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
             $rootScope.selectCount++;
           }
         }
-
         // Generate export url, tips from Stack Overflow:
         // http://stackoverflow.com/questions/16342659/directive-to-create-adownload-button
         var blob = new Blob([outputText], {type: 'text/plain'});
@@ -122,6 +120,26 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
       $scope.editTitleStyle = function() {
         return ($scope.titleEdit) ? '' : 'hidden';
       };
+      $scope.inputStyle = function() {
+        return ($scope.quiz.questions.length == 0) ? '' : 'hidden';
+      };
+      $scope.questionsStyle = function() {
+        return ($scope.quiz.questions.length == 0) ? 'hidden' : '';
+      };
+
+      // Style for active step
+      $scope.stepActive = function(step) {
+        var active = false;
+        if (step == 1 && $scope.quiz.questions.length == 0) {
+          active = true;
+        } else if (step == 3 && $rootScope.selectCount > 0) {
+          active = true;
+        } else if (step == 2 && $scope.quiz.questions.length > 0
+          && $rootScope.selectCount == 0) {
+          active = true;
+        }
+        return (active) ? 'active' : '';
+      }
     }
   ]
 );
