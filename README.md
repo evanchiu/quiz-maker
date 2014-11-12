@@ -30,7 +30,7 @@ QuizMaker is based on [angular-seed](https://github.com/angular/angular-seed):
 * ~~Homepage/Separate pages per quiz~~
 * About page
 * Clean, unique theme
-* Controls (download) in top right
+* ~~Controls (download) in top right~~
 * Three steps per quiz:
   * Input data (paste into textarea)
   * Select and edit questions (hit clear to go back)

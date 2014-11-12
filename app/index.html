@@ -35,7 +35,13 @@
           </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li ng-if="selectCount"><a href="#">Selected: <span class="badge">{{selectCount}}</span></a></li>
+          <li ng-if="selectCount">
+            <a ng-attr-download="{{downloadName}}"
+              ng-attr-href="{{exportUrl}}"
+              class="btn btn-success" href="#">
+              Download <span class="badge">{{selectCount}}</span>
+            </a>
+          </li>
         </ul>
       </div><!--/.nav-collapse -->
     </div>

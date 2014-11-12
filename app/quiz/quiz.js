@@ -36,7 +36,6 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
       // Initialize
       $scope.inputText = '';
       $rootScope.selectCount = 0;
-      $scope.downloadName = 'quiz.txt';
 
       // Watch for changes to the input, update the questions
       $scope.$watch('inputText', function(newValue, oldValue) {
@@ -52,6 +51,17 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
           parseQuestions(newValue);
         }
       }, true);
+
+      $scope.$watch('quiz.name', function(newValue, oldValue) {
+        if (newValue) {
+          $rootScope.downloadName = getDownloadName(newValue);
+        }
+      });
+
+      var getDownloadName = function(name) {
+        return name.replace(/[^a-zA-Z0-9]/g, '_');
+      };
+      $rootScope.downloadName = getDownloadName($scope.quiz.name);
 
       // Parse the questions to update selected count and export url
       var parseQuestions = function(questions) {
@@ -69,7 +79,7 @@ angular.module('app.quiz', ['ngRoute', 'app.parser'])
         // Generate export url, tips from Stack Overflow:
         // http://stackoverflow.com/questions/16342659/directive-to-create-adownload-button
         var blob = new Blob([outputText], {type: 'text/plain'});
-        $scope.exportUrl = URL.createObjectURL(blob);
+        $rootScope.exportUrl = URL.createObjectURL(blob);
       };
       parseQuestions($scope.quiz.questions);
 
