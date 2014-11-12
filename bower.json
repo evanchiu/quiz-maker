@@ -1,7 +1,7 @@
 {
   "name": "quiz-maker",
   "description": "A one page site for converting publisher text to Blackboard quiz",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "homepage": "https://github.com/evanchiu/quiz-maker",
   "license": "MIT",
   "private": true,
